@@ -1,7 +1,7 @@
-pipline{
+pipeline{
     agent any
     stages{
-        stage('sonar quality status'){
+        stage('sonar quality check'){
             agent{
                 docker{
                     image 'maven'
