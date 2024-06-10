@@ -4,14 +4,13 @@ pipeline {
         stage('sonar quality check') {
             agent {
                 docker {
-                    image 'maven'
+                    image 'maven:3.8.6-jdk-11'
                 }
             }
             steps {
                 script {
-                    def localRepoPath = "src/main/java/com/.m2/repository"
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
-                        sh "mvn clean package sonar:sonar -Dmaven.repo.local=${localRepoPath}"
+                        sh "mvn clean package sonar:sonar"
                     } 
                 }
             }
